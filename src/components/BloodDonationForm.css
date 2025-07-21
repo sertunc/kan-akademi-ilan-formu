@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 * {
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container {
@@ -49,14 +52,15 @@ input, textarea {
 .text-item {
   position: absolute;
   color: white;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 18px;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .text-item.multiline {
+  font-size: 15px;
   white-space: pre-wrap;
-  line-height: 1.4;
+  line-height: 1.1;
 }
 
 .text-item.blood-group {

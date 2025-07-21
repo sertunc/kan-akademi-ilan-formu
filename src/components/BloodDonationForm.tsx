@@ -84,12 +84,12 @@ export default function BloodDonationForm() {
         <img src="kan-akademi-ilan-template.jpeg" alt="Template" className="background-image" />
 
         {/* KAN GRUBU */}
-        <div className="text-item blood-group" style={{ top: "80px", left: "50px" }}>
+        <div className="text-item blood-group" style={{ top: "80px", left: "62px" }}>
           {formData.bloodGroup}
         </div>
 
         {/* KAN TÜRÜ */}
-        <div className="text-item blood-type" style={{ top: "180px", left: "75px" }}>
+        <div className="text-item blood-type" style={{ top: "180px", left: "85px" }}>
           {formData.bloodType}
         </div>
 
@@ -104,14 +104,14 @@ export default function BloodDonationForm() {
         </div>
 
         {/* TARİH */}
-        <div className="text-item" style={{ top: "371px", left: "60px" }}>
+        <div className="text-item" style={{ top: "370px", left: "60px" }}>
           {formData.date}
         </div>
 
         {/* HASTANE / YER */}
         <div
           className="text-item multiline"
-          style={{ top: "468px", left: "17px", width: "320px" }}
+          style={{ top: "470px", left: "17px", width: "320px" }}
         >
           {formData.hospital}
         </div>
