@@ -3,6 +3,8 @@ import "./BloodDonationForm.css";
 
 export default function BloodDonationForm() {
   const [formData, setFormData] = useState({
+    bloodGroup: "",
+    bloodType: "",
     fullName: "",
     phone: "",
     date: "",
@@ -19,6 +21,26 @@ export default function BloodDonationForm() {
     <div className="container">
       {/* FORM */}
       <form className="form">
+        <label>
+          Kan Grubu:
+          <input
+            type="text"
+            name="bloodGroup"
+            value={formData.bloodGroup}
+            onChange={handleChange}
+            placeholder="Örn: A+, O−"
+          />
+        </label>
+        <label>
+          Kan Türü:
+          <input
+            type="text"
+            name="bloodType"
+            value={formData.bloodType}
+            onChange={handleChange}
+            placeholder="Örn: Tam Kan, Trombosit"
+          />
+        </label>
         <label>
           Hasta Adı:
           <input
@@ -60,6 +82,16 @@ export default function BloodDonationForm() {
       {/* GÖRSEL + YAZILAR */}
       <div className="image-wrapper">
         <img src="kan-akademi-ilan-template.jpeg" alt="Template" className="background-image" />
+
+        {/* KAN GRUBU */}
+        <div className="text-item blood-group" style={{ top: "80px", left: "50px" }}>
+          {formData.bloodGroup}
+        </div>
+
+        {/* KAN TÜRÜ */}
+        <div className="text-item blood-type" style={{ top: "180px", left: "75px" }}>
+          {formData.bloodType}
+        </div>
 
         {/* AD SOYAD */}
         <div className="text-item" style={{ top: "261px", left: "90px" }}>

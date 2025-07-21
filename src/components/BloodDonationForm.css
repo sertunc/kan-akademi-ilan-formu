@@ -38,15 +38,14 @@ input {
 }
 
 /* KOORDİNATA GÖRE YAZILAR */
-textarea {
+input, textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  resize: vertical;
   font-family: sans-serif;
+  margin-bottom: 10px;
 }
 
-/* Görsel yazıları */
 .text-item {
   position: absolute;
   color: white;
@@ -56,7 +55,15 @@ textarea {
 }
 
 .text-item.multiline {
-  font-size: 16px;
   white-space: pre-wrap;
   line-height: 1.4;
+}
+
+.text-item.blood-group {
+  color: red;
+  font-size: 60px;
+}
+
+.text-item.blood-type {
+  font-size: 30px;
 }
