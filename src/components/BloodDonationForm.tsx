@@ -29,7 +29,7 @@ export default function BloodDonationForm() {
           />
         </label>
         <label>
-          Telefon Numarası:
+          Telefon:
           <input
             type="text"
             name="phone"
@@ -47,7 +47,7 @@ export default function BloodDonationForm() {
           />
         </label>
         <label>
-          Hastane / Bağış Yapılacak Yer:
+          Hastane Adı / Kan bağışının yapılacağı yerler
           <textarea
             name="hospital"
             value={formData.hospital}
