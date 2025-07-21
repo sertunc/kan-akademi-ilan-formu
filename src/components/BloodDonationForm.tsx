@@ -81,7 +81,7 @@ export default function BloodDonationForm() {
 
       {/* GÖRSEL + YAZILAR */}
       <div className="image-wrapper">
-        <img src="kan-akademi-ilan-template.jpeg" alt="Template" className="background-image" />
+        <img src="kan-akademi-ilan-template-1.jpg" alt="Template" className="background-image" />
 
         {/* KAN GRUBU */}
         <div className="text-item blood-group" style={{ top: "80px", left: "62px" }}>
