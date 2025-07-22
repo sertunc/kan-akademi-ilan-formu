@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import "./BloodDonationForm.css";
 
 export default function BloodDonationForm() {
@@ -11,9 +11,7 @@ export default function BloodDonationForm() {
     hospital: "",
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -23,23 +21,36 @@ export default function BloodDonationForm() {
       <form className="form">
         <label>
           Kan Grubu:
-          <input
-            type="text"
+          <select
             name="bloodGroup"
             value={formData.bloodGroup}
             onChange={handleChange}
-            placeholder="Örn: A+, O−"
-          />
+          >
+            <option value="">Seçiniz</option>
+            <option value="A RH (+)">A RH (+)</option>
+            <option value="A RH (-)">A RH (-)</option>
+            <option value="B RH (+)">B RH (+)</option>
+            <option value="B RH (-)">B RH (-)</option>
+            <option value="AB RH (+)">AB RH (+)</option>
+            <option value="AB RH (-)">AB RH (-)</option>
+            <option value="O RH (+)">O RH (+)</option>
+            <option value="O RH (-)">O RH (-)</option>
+          </select>
         </label>
         <label>
           Kan Türü:
-          <input
-            type="text"
+          <select
             name="bloodType"
             value={formData.bloodType}
             onChange={handleChange}
-            placeholder="Örn: Tam Kan, Trombosit"
-          />
+          >
+            <option value="">Seçiniz</option>
+            <option value="Kırmızı Kan">Kırmızı Kan</option>
+            <option value="Trombosit">Trombosit</option>
+            <option value="Granülosit">Granülosit</option>
+            <option value="Plazma">Plazma</option>
+            <option value="Kök Hücre">Kök Hücre</option>
+          </select>
         </label>
         <label>
           Hasta Adı:
@@ -81,15 +92,25 @@ export default function BloodDonationForm() {
 
       {/* GÖRSEL + YAZILAR */}
       <div className="image-wrapper">
-        <img src="kan-akademi-ilan-template-1.jpg" alt="Template" className="background-image" />
+        <img
+          src="kan-akademi-ilan-template-1.jpg"
+          alt="Template"
+          className="background-image"
+        />
 
         {/* KAN GRUBU */}
-        <div className="text-item blood-group" style={{ top: "80px", left: "62px" }}>
+        <div
+          className="text-item blood-group"
+          style={{ top: "80px", left: "62px" }}
+        >
           {formData.bloodGroup}
         </div>
 
         {/* KAN TÜRÜ */}
-        <div className="text-item blood-type" style={{ top: "180px", left: "85px" }}>
+        <div
+          className="text-item blood-type"
+          style={{ top: "180px", left: "85px" }}
+        >
           {formData.bloodType}
         </div>
 
@@ -115,7 +136,6 @@ export default function BloodDonationForm() {
         >
           {formData.hospital}
         </div>
-
       </div>
     </div>
   );
