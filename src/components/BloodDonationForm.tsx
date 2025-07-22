@@ -15,6 +15,22 @@ export default function BloodDonationForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const formatDateToTurkish = (dateString: string) => {
+    if (!dateString) return "";
+    
+    const months = [
+      "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+      "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
+    ];
+    
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+  };
+
   return (
     <div className="container">
       {/* FORM */}
@@ -126,7 +142,7 @@ export default function BloodDonationForm() {
 
         {/* TARİH */}
         <div className="text-item" style={{ top: "370px", left: "60px" }}>
-          {formData.date}
+          {formatDateToTurkish(formData.date)}
         </div>
 
         {/* HASTANE / YER */}
