@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import "./BloodDonationForm.css";
 
 export default function BloodDonationForm() {
@@ -12,9 +12,78 @@ export default function BloodDonationForm() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    // Sadece sayıları al
+    let cleaned = value.replace(/\D/g, "");
+
+    // 0 ile başlamazsa 0 ekle
+    if (cleaned.length > 0 && !cleaned.startsWith("0")) {
+      cleaned = "0" + cleaned;
+    }
+
+    // Maximum 11 karakter
+    cleaned = cleaned.substring(0, 11);
+
+    // Format uygula: 0XXX XXX XX XX
+    let formatted = cleaned;
+    if (cleaned.length > 4) {
+      formatted = cleaned.substring(0, 4) + " " + cleaned.substring(4);
+    }
+    if (cleaned.length > 7) {
+      formatted =
+        cleaned.substring(0, 4) +
+        " " +
+        cleaned.substring(4, 7) +
+        " " +
+        cleaned.substring(7);
+    }
+    if (cleaned.length > 9) {
+      formatted =
+        cleaned.substring(0, 4) +
+        " " +
+        cleaned.substring(4, 7) +
+        " " +
+        cleaned.substring(7, 9) +
+        " " +
+        cleaned.substring(9);
+    }
+
+    setFormData({ ...formData, phone: formatted });
+  };
+
+  const formatDateToTurkish = (dateString: string) => {
+    if (!dateString) return "";
+
+    const months = [
+      "Ocak",
+      "Şubat",
+      "Mart",
+      "Nisan",
+      "Mayıs",
+      "Haziran",
+      "Temmuz",
+      "Ağustos",
+      "Eylül",
+      "Ekim",
+      "Kasım",
+      "Aralık",
+    ];
+
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
   };
 
   return (
@@ -23,23 +92,36 @@ export default function BloodDonationForm() {
       <form className="form">
         <label>
           Kan Grubu:
-          <input
-            type="text"
+          <select
             name="bloodGroup"
             value={formData.bloodGroup}
             onChange={handleChange}
-            placeholder="Örn: A+, O−"
-          />
+          >
+            <option value="">Seçiniz</option>
+            <option value="A RH (+)">A RH (+)</option>
+            <option value="A RH (-)">A RH (-)</option>
+            <option value="B RH (+)">B RH (+)</option>
+            <option value="B RH (-)">B RH (-)</option>
+            <option value="AB RH (+)">AB RH (+)</option>
+            <option value="AB RH (-)">AB RH (-)</option>
+            <option value="O RH (+)">O RH (+)</option>
+            <option value="O RH (-)">O RH (-)</option>
+          </select>
         </label>
         <label>
           Kan Türü:
-          <input
-            type="text"
+          <select
             name="bloodType"
             value={formData.bloodType}
             onChange={handleChange}
-            placeholder="Örn: Tam Kan, Trombosit"
-          />
+          >
+            <option value="">Seçiniz</option>
+            <option value="Kırmızı Kan">Kırmızı Kan</option>
+            <option value="Trombosit">Trombosit</option>
+            <option value="Granülosit">Granülosit</option>
+            <option value="Plazma">Plazma</option>
+            <option value="Kök Hücre">Kök Hücre</option>
+          </select>
         </label>
         <label>
           Hasta Adı:
@@ -56,7 +138,9 @@ export default function BloodDonationForm() {
             type="text"
             name="phone"
             value={formData.phone}
-            onChange={handleChange}
+            onChange={handlePhoneChange}
+            placeholder="0XXX XXX XX XX"
+            maxLength={14}
           />
         </label>
         <label>
@@ -81,15 +165,25 @@ export default function BloodDonationForm() {
 
       {/* GÖRSEL + YAZILAR */}
       <div className="image-wrapper">
-        <img src="kan-akademi-ilan-template-1.jpg" alt="Template" className="background-image" />
+        <img
+          src="kan-akademi-ilan-template-1.jpg"
+          alt="Template"
+          className="background-image"
+        />
 
         {/* KAN GRUBU */}
-        <div className="text-item blood-group" style={{ top: "80px", left: "62px" }}>
+        <div
+          className="text-item blood-group"
+          style={{ top: "80px", left: "62px" }}
+        >
           {formData.bloodGroup}
         </div>
 
         {/* KAN TÜRÜ */}
-        <div className="text-item blood-type" style={{ top: "180px", left: "85px" }}>
+        <div
+          className="text-item blood-type"
+          style={{ top: "180px", left: "85px" }}
+        >
           {formData.bloodType}
         </div>
 
@@ -105,7 +199,7 @@ export default function BloodDonationForm() {
 
         {/* TARİH */}
         <div className="text-item" style={{ top: "370px", left: "60px" }}>
-          {formData.date}
+          {formatDateToTurkish(formData.date)}
         </div>
 
         {/* HASTANE / YER */}
@@ -115,7 +209,6 @@ export default function BloodDonationForm() {
         >
           {formData.hospital}
         </div>
-
       </div>
     </div>
   );
