@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next";
+
 function LegalNotice() {
+  const { t } = useTranslation();
+
   return (
     <div
       style={{
@@ -8,11 +12,7 @@ function LegalNotice() {
         color: "#888",
       }}
     >
-      <p>
-        Girilen bilgiler hiçbir şekilde sunucuda veya başka bir ortamda
-        saklanmaz. Formu doldurduktan sonra veriler yalnızca görsel üzerinde
-        gösterilir ve gizliliğiniz korunur.
-      </p>
+      <p>{t("legalNotice")}</p>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./BloodDonationForm.css";
 import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
 import type { BloodDonationFormEntity } from "../entities/BloodDonationFormEntity";
@@ -13,6 +14,8 @@ const defaultCoords = {
 };
 
 export default function BloodDonationForm() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState<BloodDonationFormEntity>({
     bloodGroup: { value: "", coord: defaultCoords.bloodGroup },
     bloodType: { value: "", coord: defaultCoords.bloodType },
@@ -47,13 +50,13 @@ export default function BloodDonationForm() {
       {/* FORM */}
       <form className="form">
         <label>
-          Kan Grubu:
+          {t("bloodGroup")}:
           <select
             name="bloodGroup"
             value={formData.bloodGroup.value}
             onChange={handleChange}
           >
-            <option value="">Seçiniz</option>
+            <option value="">{t("select")}</option>
             <option value="A RH (+)">A RH (+)</option>
             <option value="A RH (-)">A RH (-)</option>
             <option value="B RH (+)">B RH (+)</option>
@@ -65,22 +68,22 @@ export default function BloodDonationForm() {
           </select>
         </label>
         <label>
-          Kan Türü:
+          {t("bloodType")}:
           <select
             name="bloodType"
             value={formData.bloodType.value}
             onChange={handleChange}
           >
-            <option value="">Seçiniz</option>
-            <option value="Kırmızı Kan">Kırmızı Kan</option>
-            <option value="Trombosit">Trombosit</option>
-            <option value="Granülosit">Granülosit</option>
-            <option value="Plazma">Plazma</option>
-            <option value="Kök Hücre">Kök Hücre</option>
+            <option value="">{t("select")}</option>
+            <option value="Kırmızı Kan">{t("redBlood")}</option>
+            <option value="Trombosit">{t("platelet")}</option>
+            <option value="Granülosit">{t("granulocyte")}</option>
+            <option value="Plazma">{t("plasma")}</option>
+            <option value="Kök Hücre">{t("stemCell")}</option>
           </select>
         </label>
         <label>
-          Hasta Adı:
+          {t("patientName")}:
           <input
             type="text"
             name="fullName"
@@ -89,7 +92,7 @@ export default function BloodDonationForm() {
           />
         </label>
         <label>
-          Telefon:
+          {t("phone")}:
           <input
             type="text"
             name="phone"
@@ -100,7 +103,7 @@ export default function BloodDonationForm() {
           />
         </label>
         <label>
-          Tarih:
+          {t("date")}:
           <input
             type="date"
             name="date"
@@ -109,7 +112,7 @@ export default function BloodDonationForm() {
           />
         </label>
         <label>
-          Hastane Adı / Kan bağışının yapılacağı yerler
+          {t("hospitalOrLocation")}:
           <textarea
             name="hospital"
             value={formData.hospital.value}
