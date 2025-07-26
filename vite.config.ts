@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(() => {
   const config = {
     plugins: [react()],
-    base: '/kan-akademi-ilan-formu',
   }
 
   return config

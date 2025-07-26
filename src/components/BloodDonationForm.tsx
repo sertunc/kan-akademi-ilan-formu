@@ -1,15 +1,25 @@
 import { useState } from "react";
 import "./BloodDonationForm.css";
 import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
+import type { BloodDonationFormEntity } from "../entities/BloodDonationFormEntity";
+
+const defaultCoords = {
+  bloodGroup: { top: 80, left: 62 },
+  bloodType: { top: 180, left: 85 },
+  fullName: { top: 261, left: 90 },
+  phone: { top: 315, left: 75 },
+  date: { top: 370, left: 60 },
+  hospital: { top: 470, left: 17 },
+};
 
 export default function BloodDonationForm() {
-  const [formData, setFormData] = useState({
-    bloodGroup: "",
-    bloodType: "",
-    fullName: "",
-    phone: "",
-    date: "",
-    hospital: "",
+  const [formData, setFormData] = useState<BloodDonationFormEntity>({
+    bloodGroup: { value: "", coord: defaultCoords.bloodGroup },
+    bloodType: { value: "", coord: defaultCoords.bloodType },
+    fullName: { value: "", coord: defaultCoords.fullName },
+    phone: { value: "", coord: defaultCoords.phone },
+    date: { value: "", coord: defaultCoords.date },
+    hospital: { value: "", coord: defaultCoords.hospital },
   });
 
   const handleChange = (
@@ -17,12 +27,19 @@ export default function BloodDonationForm() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: { ...prev[name as keyof BloodDonationFormEntity], value },
+    }));
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhoneNumber(e.target.value);
-    setFormData({ ...formData, phone: formatted });
+    setFormData((prev) => ({
+      ...prev,
+      phone: { ...prev.phone, value: formatted },
+    }));
   };
 
   return (
@@ -33,7 +50,7 @@ export default function BloodDonationForm() {
           Kan Grubu:
           <select
             name="bloodGroup"
-            value={formData.bloodGroup}
+            value={formData.bloodGroup.value}
             onChange={handleChange}
           >
             <option value="">Seçiniz</option>
@@ -51,7 +68,7 @@ export default function BloodDonationForm() {
           Kan Türü:
           <select
             name="bloodType"
-            value={formData.bloodType}
+            value={formData.bloodType.value}
             onChange={handleChange}
           >
             <option value="">Seçiniz</option>
@@ -67,7 +84,7 @@ export default function BloodDonationForm() {
           <input
             type="text"
             name="fullName"
-            value={formData.fullName}
+            value={formData.fullName.value}
             onChange={handleChange}
           />
         </label>
@@ -76,7 +93,7 @@ export default function BloodDonationForm() {
           <input
             type="text"
             name="phone"
-            value={formData.phone}
+            value={formData.phone.value}
             onChange={handlePhoneChange}
             placeholder="0XXX XXX XX XX"
             maxLength={14}
@@ -87,7 +104,7 @@ export default function BloodDonationForm() {
           <input
             type="date"
             name="date"
-            value={formData.date}
+            value={formData.date.value}
             onChange={handleChange}
           />
         </label>
@@ -95,7 +112,7 @@ export default function BloodDonationForm() {
           Hastane Adı / Kan bağışının yapılacağı yerler
           <textarea
             name="hospital"
-            value={formData.hospital}
+            value={formData.hospital.value}
             onChange={handleChange}
             rows={5}
           />
@@ -113,40 +130,68 @@ export default function BloodDonationForm() {
         {/* KAN GRUBU */}
         <div
           className="text-item blood-group"
-          style={{ top: "80px", left: "62px" }}
+          style={{
+            top: `${formData.bloodGroup.coord.top}px`,
+            left: `${formData.bloodGroup.coord.left}px`,
+          }}
         >
-          {formData.bloodGroup}
+          {formData.bloodGroup.value}
         </div>
 
         {/* KAN TÜRÜ */}
         <div
           className="text-item blood-type"
-          style={{ top: "180px", left: "85px" }}
+          style={{
+            top: `${formData.bloodType.coord.top}px`,
+            left: `${formData.bloodType.coord.left}px`,
+          }}
         >
-          {formData.bloodType}
+          {formData.bloodType.value}
         </div>
 
         {/* AD SOYAD */}
-        <div className="text-item" style={{ top: "261px", left: "90px" }}>
-          {formData.fullName}
+        <div
+          className="text-item"
+          style={{
+            top: `${formData.fullName.coord.top}px`,
+            left: `${formData.fullName.coord.left}px`,
+          }}
+        >
+          {formData.fullName.value}
         </div>
 
         {/* TELEFON */}
-        <div className="text-item" style={{ top: "315px", left: "75px" }}>
-          {formData.phone}
+        <div
+          className="text-item"
+          style={{
+            top: `${formData.phone.coord.top}px`,
+            left: `${formData.phone.coord.left}px`,
+          }}
+        >
+          {formData.phone.value}
         </div>
 
         {/* TARİH */}
-        <div className="text-item" style={{ top: "370px", left: "60px" }}>
-          {formatDateToTurkish(formData.date)}
+        <div
+          className="text-item"
+          style={{
+            top: `${formData.date.coord.top}px`,
+            left: `${formData.date.coord.left}px`,
+          }}
+        >
+          {formatDateToTurkish(formData.date.value)}
         </div>
 
         {/* HASTANE / YER */}
         <div
           className="text-item multiline"
-          style={{ top: "470px", left: "17px", width: "320px" }}
+          style={{
+            top: `${formData.hospital.coord.top}px`,
+            left: `${formData.hospital.coord.left}px`,
+            width: "320px",
+          }}
         >
-          {formData.hospital}
+          {formData.hospital.value}
         </div>
       </div>
     </div>
