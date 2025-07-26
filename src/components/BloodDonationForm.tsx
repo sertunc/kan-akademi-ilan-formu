@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./BloodDonationForm.css";
+import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
 
 export default function BloodDonationForm() {
   const [formData, setFormData] = useState({
@@ -20,70 +21,8 @@ export default function BloodDonationForm() {
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    // Sadece sayıları al
-    let cleaned = value.replace(/\D/g, "");
-
-    // 0 ile başlamazsa 0 ekle
-    if (cleaned.length > 0 && !cleaned.startsWith("0")) {
-      cleaned = "0" + cleaned;
-    }
-
-    // Maximum 11 karakter
-    cleaned = cleaned.substring(0, 11);
-
-    // Format uygula: 0XXX XXX XX XX
-    let formatted = cleaned;
-    if (cleaned.length > 4) {
-      formatted = cleaned.substring(0, 4) + " " + cleaned.substring(4);
-    }
-    if (cleaned.length > 7) {
-      formatted =
-        cleaned.substring(0, 4) +
-        " " +
-        cleaned.substring(4, 7) +
-        " " +
-        cleaned.substring(7);
-    }
-    if (cleaned.length > 9) {
-      formatted =
-        cleaned.substring(0, 4) +
-        " " +
-        cleaned.substring(4, 7) +
-        " " +
-        cleaned.substring(7, 9) +
-        " " +
-        cleaned.substring(9);
-    }
-
+    const formatted = formatPhoneNumber(e.target.value);
     setFormData({ ...formData, phone: formatted });
-  };
-
-  const formatDateToTurkish = (dateString: string) => {
-    if (!dateString) return "";
-
-    const months = [
-      "Ocak",
-      "Şubat",
-      "Mart",
-      "Nisan",
-      "Mayıs",
-      "Haziran",
-      "Temmuz",
-      "Ağustos",
-      "Eylül",
-      "Ekim",
-      "Kasım",
-      "Aralık",
-    ];
-
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-
-    return `${day} ${month} ${year}`;
   };
 
   return (
