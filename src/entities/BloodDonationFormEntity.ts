@@ -7,4 +7,5 @@ export interface BloodDonationFormEntity {
   phone: { value: string; coord: CoordinateEntity };
   date: { value: string; coord: CoordinateEntity };
   hospital: { value: string; coord: CoordinateEntity };
+  location: { value: string; coord: CoordinateEntity };
 }

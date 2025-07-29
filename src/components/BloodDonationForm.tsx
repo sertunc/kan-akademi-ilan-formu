@@ -5,12 +5,13 @@ import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
 import type { BloodDonationFormEntity } from "../entities/BloodDonationFormEntity";
 
 const defaultCoords = {
-  bloodGroup: { top: 80, left: 62 },
-  bloodType: { top: 180, left: 85 },
-  fullName: { top: 261, left: 90 },
-  phone: { top: 315, left: 75 },
-  date: { top: 370, left: 60 },
-  hospital: { top: 470, left: 17 },
+  bloodGroup: { top: 82, left: 40 },
+  bloodType: { top: 212, left: 143 },
+  fullName: { top: 257, left: 86 },
+  phone: { top: 301, left: 70 },
+  date: { top: 346, left: 56 },
+  hospital: { top: 408, left: 10 },
+  location: { top: 475, left: 10 },
 };
 
 export default function BloodDonationForm() {
@@ -23,6 +24,7 @@ export default function BloodDonationForm() {
     phone: { value: "", coord: defaultCoords.phone },
     date: { value: "", coord: defaultCoords.date },
     hospital: { value: "", coord: defaultCoords.hospital },
+    location: { value: "", coord: defaultCoords.location },
   });
 
   const handleChange = (
@@ -63,8 +65,8 @@ export default function BloodDonationForm() {
             <option value="B RH (-)">B RH (-)</option>
             <option value="AB RH (+)">AB RH (+)</option>
             <option value="AB RH (-)">AB RH (-)</option>
-            <option value="O RH (+)">O RH (+)</option>
-            <option value="O RH (-)">O RH (-)</option>
+            <option value="0 RH (+)">0 RH (+)</option>
+            <option value="0 RH (-)">0 RH (-)</option>
           </select>
         </label>
         <label>
@@ -112,10 +114,19 @@ export default function BloodDonationForm() {
           />
         </label>
         <label>
-          {t("hospitalOrLocation")}:
+          {t("hospitalName")}:
           <textarea
             name="hospital"
             value={formData.hospital.value}
+            onChange={handleChange}
+            rows={2}
+          />
+        </label>
+        <label>
+          {t("location")}:
+          <textarea
+            name="location"
+            value={formData.location.value}
             onChange={handleChange}
             rows={5}
           />
@@ -143,7 +154,7 @@ export default function BloodDonationForm() {
 
         {/* KAN TÜRÜ */}
         <div
-          className="text-item blood-type"
+          className="text-item"
           style={{
             top: `${formData.bloodType.coord.top}px`,
             left: `${formData.bloodType.coord.left}px`,
@@ -185,16 +196,28 @@ export default function BloodDonationForm() {
           {formatDateToTurkish(formData.date.value)}
         </div>
 
-        {/* HASTANE / YER */}
+        {/* HASTANE */}
         <div
           className="text-item multiline"
           style={{
             top: `${formData.hospital.coord.top}px`,
             left: `${formData.hospital.coord.left}px`,
-            width: "320px",
+            width: "305px",
           }}
         >
           {formData.hospital.value}
+        </div>
+
+        {/* YER */}
+        <div
+          className="text-item multiline"
+          style={{
+            top: `${formData.location.coord.top}px`,
+            left: `${formData.location.coord.left}px`,
+            width: "340px",
+          }}
+        >
+          {formData.location.value}
         </div>
       </div>
     </div>
