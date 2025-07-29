@@ -9,12 +9,12 @@ import "./i18n";
 function App() {
   const { t, i18n } = useTranslation();
 
-  useEffect(() => {
-    Swal.fire({
-      text: t("greeting"),
-      confirmButtonText: t("close"),
-    });
-  }, [t]);
+  // useEffect(() => {
+  //   Swal.fire({
+  //     text: t("greeting"),
+  //     confirmButtonText: t("close"),
+  //   });
+  // }, [t]);
 
   useEffect(() => {
     const userLanguage = navigator.language;
