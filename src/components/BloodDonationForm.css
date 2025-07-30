@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
@@ -42,7 +42,6 @@ input, select, textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  font-family: sans-serif;
   margin-bottom: 10px;
 }
 
@@ -50,7 +49,7 @@ input, select, textarea {
   position: absolute;
   color: white;
   /* font-weight: bold; */
-  font-size: 18px;
+  font-size: 17px;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 

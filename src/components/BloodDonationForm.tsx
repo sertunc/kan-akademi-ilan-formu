@@ -6,10 +6,10 @@ import type { BloodDonationFormEntity } from "../entities/BloodDonationFormEntit
 
 const defaultCoords = {
   bloodGroup: { top: 82, left: 40 },
-  bloodType: { top: 212, left: 143 },
-  fullName: { top: 257, left: 86 },
-  phone: { top: 301, left: 70 },
-  date: { top: 346, left: 56 },
+  bloodType: { top: 213, left: 135 },
+  fullName: { top: 257, left: 80 },
+  phone: { top: 303, left: 65 },
+  date: { top: 347, left: 50 },
   hospital: { top: 408, left: 10 },
   location: { top: 475, left: 10 },
 };
