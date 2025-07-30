@@ -5,7 +5,7 @@ import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
 import type { BloodDonationFormEntity } from "../entities/BloodDonationFormEntity";
 
 const BLOOD_GROUP_LEFT_AB = 20;
-const BLOOD_GROUP_LEFT_DEFAULT = 40;
+const BLOOD_GROUP_LEFT_DEFAULT = 47;
 
 const defaultCoords = {
   bloodGroup: { top: 83, left: BLOOD_GROUP_LEFT_DEFAULT },
