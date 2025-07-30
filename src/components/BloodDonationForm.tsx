@@ -4,8 +4,11 @@ import "./BloodDonationForm.css";
 import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
 import type { BloodDonationFormEntity } from "../entities/BloodDonationFormEntity";
 
+const BLOOD_GROUP_LEFT_AB = 20;
+const BLOOD_GROUP_LEFT_DEFAULT = 40;
+
 const defaultCoords = {
-  bloodGroup: { top: 82, left: 40 },
+  bloodGroup: { top: 83, left: BLOOD_GROUP_LEFT_DEFAULT },
   bloodType: { top: 213, left: 135 },
   fullName: { top: 257, left: 80 },
   phone: { top: 303, left: 65 },
@@ -27,16 +30,34 @@ export default function BloodDonationForm() {
     location: { value: "", coord: defaultCoords.location },
   });
 
+  function getBloodGroupLeft(value: string) {
+    return value.startsWith("AB") ? BLOOD_GROUP_LEFT_AB : BLOOD_GROUP_LEFT_DEFAULT;
+  }
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: { ...prev[name as keyof BloodDonationFormEntity], value },
-    }));
+
+    if (name === "bloodGroup") {
+      setFormData((prev) => ({
+        ...prev,
+        bloodGroup: {
+          value,
+          coord: {
+            ...prev.bloodGroup.coord,
+            left: getBloodGroupLeft(value),
+          },
+        },
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: { ...prev[name as keyof BloodDonationFormEntity], value },
+      }));
+    }
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
