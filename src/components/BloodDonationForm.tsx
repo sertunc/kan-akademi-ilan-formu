@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Swal from "sweetalert2";
 import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
 import "./BloodDonationForm.css";
@@ -72,6 +73,20 @@ export default function BloodDonationForm() {
 
   const downloadImage = () => {
     if (!imageRef.current) return;
+
+    const allFieldsFilled = Object.values(formData).every(
+      (field) => field.value.trim() !== ""
+    );
+
+    if (!allFieldsFilled) {
+      Swal.fire({
+        icon: "error",
+        confirmButtonText: t("close"),
+        text: t("fillAllFields"),
+      });
+      return;
+    }
+
     html2canvas(imageRef.current).then((canvas) => {
       const link = document.createElement("a");
       link.download = "kan-bagis-ilani-formu.png";
