@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
 import "./BloodDonationForm.css";
 import { formatDateToTurkish, formatPhoneNumber } from "../utils/formUtils";
@@ -9,9 +10,9 @@ const BLOOD_GROUP_LEFT_DEFAULT = 47;
 
 const defaultCoords = {
   bloodGroup: { top: 83, left: BLOOD_GROUP_LEFT_DEFAULT },
-  bloodType: { top: 213, left: 135 },
-  fullName: { top: 257, left: 80 },
-  phone: { top: 303, left: 65 },
+  bloodType: { top: 212, left: 135 },
+  fullName: { top: 256, left: 80 },
+  phone: { top: 302, left: 65 },
   date: { top: 347, left: 50 },
   hospital: { top: 408, left: 10 },
   location: { top: 475, left: 10 },
@@ -19,6 +20,7 @@ const defaultCoords = {
 
 export default function BloodDonationForm() {
   const { t } = useTranslation();
+  const imageRef = useRef(null);
 
   const [formData, setFormData] = useState<BloodDonationFormEntity>({
     bloodGroup: { value: "", coord: defaultCoords.bloodGroup },
@@ -66,6 +68,16 @@ export default function BloodDonationForm() {
       ...prev,
       phone: { ...prev.phone, value: formatted },
     }));
+  };
+
+  const downloadImage = () => {
+    if (!imageRef.current) return;
+    html2canvas(imageRef.current).then((canvas) => {
+      const link = document.createElement("a");
+      link.download = "kan-bagis-ilani-formu.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
   };
 
   return (
@@ -154,8 +166,13 @@ export default function BloodDonationForm() {
         </label>
       </form>
 
+      {/* İNDİRME BUTONU */}
+      <button className="download-button" onClick={downloadImage}>
+        Görseli İndir
+      </button>
+
       {/* GÖRSEL + YAZILAR */}
-      <div className="image-wrapper">
+      <div className="image-wrapper" ref={imageRef}>
         <img
           src="kan-akademi-ilan-template-1.jpg"
           alt="Template"

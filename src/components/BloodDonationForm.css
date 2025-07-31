@@ -16,7 +16,8 @@
   max-width: 360px;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 8px;
   font-size: 16px;
@@ -25,8 +26,10 @@ input, select {
 /* GÖRSEL */
 .image-wrapper {
   position: relative;
-  width: 360px;     /* sabit genişlik */
-  height: 640px;    /* sabit yükseklik */
+  width: 360px;
+  /* sabit genişlik */
+  height: 640px;
+  /* sabit yükseklik */
   /* border: 1px solid #ccc; */
   overflow: hidden;
 }
@@ -38,7 +41,9 @@ input, select {
 }
 
 /* KOORDİNATA GÖRE YAZILAR */
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
@@ -65,4 +70,19 @@ input, select, textarea {
   font-size: 78px;
   color: #e3240d;
   /* letter-spacing: 2px; */
+}
+
+.download-button {
+  /* margin: 20px 0; */
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background-color: #b71c1c;
 }
