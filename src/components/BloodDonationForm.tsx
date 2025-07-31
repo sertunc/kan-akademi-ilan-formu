@@ -122,6 +122,7 @@ export default function BloodDonationForm() {
           <input
             type="text"
             name="fullName"
+            autoComplete="off"
             value={formData.fullName.value}
             onChange={handleChange}
           />
@@ -131,6 +132,7 @@ export default function BloodDonationForm() {
           <input
             type="text"
             name="phone"
+            autoComplete="off"
             value={formData.phone.value}
             onChange={handlePhoneChange}
             placeholder="0XXX XXX XX XX"
