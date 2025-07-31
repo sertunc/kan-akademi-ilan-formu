@@ -1,4 +1,4 @@
-# Kan Akademi İlan Formu
+# Kan İlanı Oluşturma Asistanı
 
 Bu proje, kan bağışı ihtiyacı olan hastalar için kolayca ilan oluşturulmasını sağlayan bir web uygulamasıdır. Kullanıcılar, hasta bilgilerini ve kan ihtiyacını girerek ilan oluşturabilirler.
 
