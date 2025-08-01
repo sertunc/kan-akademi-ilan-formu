@@ -14,7 +14,7 @@ const defaultCoords = {
   bloodType: { top: 212, left: 135 },
   fullName: { top: 256, left: 80 },
   phone: { top: 302, left: 65 },
-  date: { top: 347, left: 50 },
+  date: { top: 346, left: 50 },
   hospital: { top: 408, left: 10 },
   location: { top: 475, left: 10 },
 };
@@ -74,13 +74,22 @@ export default function BloodDonationForm() {
   const downloadImage = () => {
     if (!imageRef.current) return;
 
+    if (formData.phone.value.length < 11) {
+      Swal.fire({
+        icon: "warning",
+        confirmButtonText: t("close"),
+        text: t("phoneNumberInvalid"),
+      });
+      return;
+    }
+
     const allFieldsFilled = Object.values(formData).every(
       (field) => field.value.trim() !== ""
     );
 
     if (!allFieldsFilled) {
       Swal.fire({
-        icon: "error",
+        icon: "warning",
         confirmButtonText: t("close"),
         text: t("fillAllFields"),
       });
