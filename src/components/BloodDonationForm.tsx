@@ -74,15 +74,6 @@ export default function BloodDonationForm() {
   const downloadImage = () => {
     if (!imageRef.current) return;
 
-    if (formData.phone.value.length < 11) {
-      Swal.fire({
-        icon: "warning",
-        confirmButtonText: t("close"),
-        text: t("phoneNumberInvalid"),
-      });
-      return;
-    }
-
     const allFieldsFilled = Object.values(formData).every(
       (field) => field.value.trim() !== ""
     );
@@ -91,7 +82,16 @@ export default function BloodDonationForm() {
       Swal.fire({
         icon: "warning",
         confirmButtonText: t("close"),
-        text: t("fillAllFields"),
+        html: t("fillAllFields").replace(/\n/g, "<br />"),
+      });
+      return;
+    }
+
+    if (formData.phone.value.length < 11) {
+      Swal.fire({
+        icon: "warning",
+        confirmButtonText: t("close"),
+        html: t("phoneNumberInvalid").replace(/\n/g, "<br />"),
       });
       return;
     }
