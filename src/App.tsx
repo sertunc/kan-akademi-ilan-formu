@@ -3,6 +3,7 @@ import Logo from "./components/Logo";
 import PageHeader from "./components/PageHeader";
 import BloodDonationForm from "./components/BloodDonationForm";
 import LegalNotice from "./components/LegalNotice";
+import Copyright from "./components/Copyright";
 import { useTranslation } from "react-i18next";
 import "./i18n";
 
@@ -22,6 +23,7 @@ function App() {
       <PageHeader />
       <BloodDonationForm />
       <LegalNotice />
+      <Copyright />
     </>
   );
 }
