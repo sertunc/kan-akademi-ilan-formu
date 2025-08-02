@@ -20,7 +20,7 @@ const defaultCoords = {
 };
 
 export default function BloodDonationForm() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const imageRef = useRef(null);
 
   const [formData, setFormData] = useState<BloodDonationFormEntity>({
@@ -190,12 +190,19 @@ export default function BloodDonationForm() {
             rows={5}
           />
         </label>
-      </form>
 
-      {/* İNDİRME BUTONU */}
-      <button className="download-button" onClick={downloadImage}>
-        Görseli İndir
-      </button>
+        {/* İNDİRME BUTONU */}
+        <img
+          src={
+            i18n.language === "tr"
+              ? "download-button-tr.jpg"
+              : "download-button-en.jpg"
+          }
+          alt="Son Adım: İlanı Galerine Kaydet"
+          className="download-image-button"
+          onClick={downloadImage}
+        />
+      </form>
 
       {/* GÖRSEL + YAZILAR */}
       <div className="image-wrapper" ref={imageRef}>
