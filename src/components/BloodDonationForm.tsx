@@ -124,6 +124,7 @@ export default function BloodDonationForm() {
             <option value="AB RH (-)">AB RH (-)</option>
             <option value="0 RH (+)">0 RH (+)</option>
             <option value="0 RH (-)">0 RH (-)</option>
+            <option value="Kan Grubu Fark Etmeksizin">{t("regardlessOfBloodType")}</option>
           </select>
         </label>
         <label>
@@ -213,15 +214,23 @@ export default function BloodDonationForm() {
         />
 
         {/* KAN GRUBU */}
-        <div
-          className="text-item blood-group"
-          style={{
-            top: `${formData.bloodGroup.coord.top}px`,
-            left: `${formData.bloodGroup.coord.left}px`,
-          }}
-        >
-          {formData.bloodGroup.value}
-        </div>
+        {formData.bloodGroup.value !== "Kan Grubu Fark Etmeksizin" ? (
+          <div
+            className="text-item blood-group"
+            style={{
+              top: `${formData.bloodGroup.coord.top}px`,
+              left: `${formData.bloodGroup.coord.left}px`,
+            }}
+          >
+            {formData.bloodGroup.value}
+          </div>
+        ) : (
+          <div className="text-item blood-group regardless-blood-group">
+            Kan Grubu
+            <br />
+            Fark Etmeksizin
+          </div>
+        )}
 
         {/* KAN TÜRÜ */}
         <div

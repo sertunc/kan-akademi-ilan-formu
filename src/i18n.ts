@@ -28,6 +28,7 @@ i18n.use(initReactI18next).init({
         granulocyte: "Granülosit",
         plasma: "Plazma",
         stemCell: "Kök Hücre",
+        regardlessOfBloodType: "Kan Grubu Fark Etmeksizin"
       },
     },
     en: {
@@ -55,6 +56,7 @@ i18n.use(initReactI18next).init({
         granulocyte: "Granulocyte",
         plasma: "Plasma",
         stemCell: "Stem Cell",
+        regardlessOfBloodType: "Regardless of Blood Type"
       },
     },
   },
